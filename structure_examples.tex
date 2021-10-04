@@ -1,0 +1,170 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage{covington}
+\usepackage{avm}
+\usepackage{forest}
+\useforestlibrary{linguistics}
+\forestapplylibrarydefaults{linguistics}
+\usepackage[margin=1in]{geometry}
+
+
+%% This file contains examples of fully filled out structures, to get skeletons for copy pasting see structure_skeletons.tex 
+
+\begin{document}
+
+%% (1) PROBLEM EXAMPLE
+\section*{Ch. 1, Problem 1}
+\begin{description}
+    \item[(A)] The tree for \textit{I learned LaTeX} is shown in (\ref{tree})
+    \item[(B)] A simple AVM for the abbreviation for an S node is shown in (\ref{avm-s})
+    \item[(C)] A complex AVM for the ADV$_{pol}$ Addition Lexical Rule is shown in (\ref{avm-pol})
+    \item[(D)] A complex tree for the phrase ``we send two letters to Lee" (as shown on pg. 189) is shown in (\ref{tree-complex})
+    
+\end{description}
+
+
+
+%% (2) TREE EXAMPLE (without AVMs)
+\begin{examples}
+    \item\begin{forest}
+        [S 
+            [NP [N [I]]]
+            [VP [learned LaTeX, roof]]
+        ]
+    \end{forest}\label{tree}
+\end{examples}
+
+
+
+%% (3) AVM EXAMPLE (simple), Abbreviation for S node, pg. 501
+%%begin novalidate
+\begin{examples}
+        \item\begin{avm}
+            \[ SYN & \[
+                HEAD & \it{verb} \\ 
+                VAL & \[
+                    COMPS & \<\> \\ 
+                    SPR & \<\> \\
+                    \]
+                \] 
+            \]
+        \end{avm}\label{avm-s}
+\end{examples}
+%%end novalidate
+
+
+
+
+%% (4) AVM EXAMPLE (complex), ADV pol-Addition Lexical Rule on pg. 507
+%%begin novalidate
+\begin{examples}
+        \item\begin{avm}
+            \[\it{pi-rule}  \\ 
+                INPUT & \< X, \[
+                    SYN & \[
+                        HEAD & \[
+                            \it{verb} \\ 
+                            FORM & fin \\ 
+                            POL & - \\ 
+                            AUX & +
+                        \] 
+                    \] \\
+                    ARG-ST & \< \@1 \>\ $\oplus$ \@A \\ 
+                    SEM & \[INDEX & \it{s$_1$} \]
+                \] \> \\ 
+                OUTPUT & \< Y, \[
+                    SYN & \[ 
+                        HEAD & \[POL & + \] \\
+                        VAL & \[SPR \<Z\>\]
+                    \] \\
+                    ARG-ST & \<\@1\>\ $\oplus$ 
+                    \ \avml\hfil ADV$_{pol}$\\[-1ex] \<\[
+                        INDEX & \it{s$_2$} \\ 
+                        RESTR & \<\[ ARG & \it{s$_1$} \]\>
+                    \]\> \avmr \
+                    \ $\oplus$ \@A \\ 
+                    SEM & \[INDEX \it{s$_2$}\]
+                \] \> \\ 
+            \]
+        \end{avm}\label{avm-pol}
+\end{examples}
+%%end novalidate
+
+
+
+%% (5) COMPLEX TREE EXAMPLE (with AVMs)
+%%begin novalidate
+\begin{examples}
+    \item\begin{forest}
+        [{\begin{avm}
+            \[\it{phrase} \\
+                SYN & \[
+                    HEAD & \@1 \\
+                    VAL & \[
+                        SPR & \< \> \\
+                        COMPS & \< \> \\
+                        MOD & \< \>
+                    \] 
+                \] \\ 
+                SEM & \[
+                    MODE & prop \\ 
+                    INDEX & w \\ 
+                    RESTR & \@B $\oplus$ \@K $\oplus$ \@J $\oplus$ \@C $\oplus$ \@I
+                \] 
+            \] 
+        \end{avm}}
+        [{\begin{avm} \avml \hfil {\@2}NP$_i$ \\[-1ex] \[
+            AGR & \@{11} \[\it{plural} \\ 
+                PER & 1st \\ 
+                NUM & pl
+            \] \\
+            RESTR & \@B
+        \]
+        \avmr\end{avm}} [we]] 
+        [{\begin{avm}
+            \[\it{phrase} \\ 
+                SYN & \[
+                    HEAD & \@1 \\
+                    VAL & \[
+                        SPR & \< \@2 \> \\ 
+                        COMPS & \< \> \\ 
+                        MOD & \< \> 
+                    \]
+                \] \\ 
+                SEM & \[
+                    MODE & prop \\ 
+                    INDEX & w \\ 
+                    RESTR \@K $\oplus$ \@J $\oplus$ \@C $\oplus$ \@I
+                \]
+            \]
+        \end{avm}}
+            [{\begin{avm} 
+                \[\it{word} \\ 
+                    SYN & \[
+                        HEAD & \@1 \[
+                            \it{verb} \\ 
+                            AGR & \@{11}
+                        \] \\ 
+                        VAL & \[
+                            SPR & \< \@2 \> \\ 
+                            COMPS & \< \@3 \> \\ 
+                            MOD & \< \> 
+                        \] 
+                    \] \\
+                    SEM & \[
+                        MODE & prop \\ 
+                        INDEX & w \\ 
+                        RESTR & \@K
+                    \] 
+                \] 
+            \end{avm}} [send]]
+            [{\begin{avm} \avml \hfil {\@3}NP$_k$ \\[-1ex] \[
+                RESTR & \@J $\oplus$ \@C $\oplus$ \@I
+                \]
+            \avmr\end{avm}} [two letters to Lee, roof]]]
+        ]
+    \end{forest}\label{tree-complex}
+\end{examples}
+%%end novalidate
+
+\end{document}

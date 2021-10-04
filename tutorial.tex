@@ -1,0 +1,113 @@
+% In the beginning of the code, we declare the document type, as well as the packages to import and use
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+% Covington gives us the ability to have enumerated examples like in linguistics papers
+\usepackage{covington}
+% AVM allows us to code Attribute-Value Matrices like are used in HPSG
+\usepackage{avm}
+% Forest allows us to code syntax trees
+\usepackage{forest}
+\useforestlibrary{linguistics}
+\forestapplylibrarydefaults{linguistics}
+% You can change the page margins with the geometry package
+\usepackage[margin=1in]{geometry}
+
+
+% LaTeX will automatically make a document title based on the title, author, and date entered in these commands
+\title{LaTeX Tutorial}
+\author{Liz Conrad (ecconrad)}
+\date{October 2021}
+
+
+% This command begins the body of the LaTeX document. The document must end with \end{document}
+\begin{document}
+
+% As it suggests, this command makes the title block based on the title, author, and date you supplied
+\maketitle
+
+
+\section*{Chapter 1, Problem 1}
+
+% Wrapping my answers in the "description" environment might make your document look a little bit neater, but this is really a preference thing
+\begin{description}
+    
+    \item[(A)] The phrase for \textit{I am not a bear} in several languages can be seen in (\ref{bear-en})-(\ref{bear-ga}) below
+    
+    % When using the Covington package, make sure to wrap all your examples in the \begin{examples}...\end{examples} commands, so that they're numbered coherently. Each numbered Covington example must be started with \item
+    \begin{examples}
+        \item{I am not a bear}\label{bear-en}
+        \item{nanuuŋŋittuŋa}\label{bear-iu}
+        \item{én nem medve vagyok}\label{bear-hu}
+        \item{ní béar mé}\label{bear-ga}
+    \end{examples}
+    
+    \item[(B)] The tree for example 27 on page 34 (\textit{the cats like Sandy}) is shown in (\ref{tree})
+    
+    % Here is how to code a tree with the forest package
+    \begin{examples}
+    \item\begin{forest}
+        [S 
+            [NP 
+                [D [the]]
+                [NOM [N [cats]]]
+            ]
+            [VP
+                [V [like]]
+                [NP [NOM [N [Sandy]]]]
+            ]
+        ]
+    \end{forest}\label{tree}
+    \end{examples}
+    
+    \item[(C)] Here we see how AVMs look in LaTeX. A minimal AVM is shown in (\ref{minimal-avm}). The lexical entry for the pronoun \textit{you}, as found at the end of Chapter 3, is also shown in (\ref{you})
+    
+    % Here is how to code an AVM with the avm package
+    % IMPORTANT: avm.sty must be in your project folder
+    % Feel free to copy avm.sty from this project
+    \begin{examples}
+        %%begin novalidate%%
+        \item\begin{avm}
+            \[
+                ATTRIBUTE 1 & value 1\\
+                ATTRIBUTE 2 & value 2
+            \]
+        \end{avm}\label{minimal-avm}
+        %%end novalidate
+        
+        %%begin novalidate
+        \item\begin{avm}
+        \< you, 
+            \[
+            \textit{word}\\
+            HEAD & 
+                \[
+                \textit{noun}\\
+                AGR & \[PER & 2nd\]
+                \]\\
+            VAL & 
+                \avmbox{1}
+                \[
+                COMPS & itr\\
+                SPR & +
+                \]
+            \]
+        \>
+        \end{avm}\label{you}
+        %%end novalidate
+    \end{examples}
+
+\end{description}
+
+% this command starts the following material on a new page
+\newpage
+
+\textbf{\Large Chapter 1, Problem 2}
+\begin{description}
+This is an example of a question that you might answer completely in prose, without the need for diagrams or subparts. You don't actually need the "description" flags around this part, but I find it looks a little better this way. LaTeX will also say that this looks to be missing an item, but it will still compile. \textbf{bold}, \textit{italic}, \textsc{small-caps}
+\end{description}
+
+\end{document}
+
+
+\end{document}
