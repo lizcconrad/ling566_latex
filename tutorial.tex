@@ -17,7 +17,7 @@
 % LaTeX will automatically make a document title based on the title, author, and date entered in these commands
 \title{LaTeX Tutorial}
 \author{Liz Conrad (ecconrad)}
-\date{October 2021}
+\date{October 2023}
 
 
 % This command begins the body of the LaTeX document. The document must end with \end{document}
@@ -30,6 +30,7 @@
 \section*{Chapter 1, Problem 1}
 
 % Wrapping my answers in the "description" environment might make your document look a little bit neater, but this is really a preference thing
+% The intended purpose of the "description" environment is for labeled lists, so it works well for homework problems with multiple parts (e.g. A, B, C)
 \begin{description}
     
     \item[(A)] The phrase for \textit{I am not a bear} in several languages can be seen in (\ref{bear-en})-(\ref{bear-ga}) below
@@ -44,20 +45,29 @@
     
     \item[(B)] The tree for example 27 on page 34 (\textit{the cats like Sandy}) is shown in (\ref{tree})
     
+    \item[(C)] The tree I made during the tutorial is shown in (\ref{tutorial-tree})
+    
     % Here is how to code a tree with the forest package
     \begin{examples}
-    \item\begin{forest}
-        [S 
-            [NP 
-                [D [the]]
-                [NOM [N [cats]]]
+        \item\begin{forest}
+            [S
+                [NP [N [HPSG]]]
+                [VP [is fun, roof]]
             ]
-            [VP
-                [V [like]]
-                [NP [NOM [N [Sandy]]]]
+        \end{forest}\label{tutorial-tree}
+    
+        \item\begin{forest}
+            [S 
+                [NP 
+                    [D [the]]
+                    [NOM [N [cats]]]
+                ]
+                [VP
+                    [V [like]]
+                    [NP [NOM [N [Sandy]]]]
+                ]
             ]
-        ]
-    \end{forest}\label{tree}
+        \end{forest}\label{tree}
     \end{examples}
     
     \item[(C)] Here we see how AVMs look in LaTeX. A minimal AVM is shown in (\ref{minimal-avm}). The lexical entry for the pronoun \textit{you}, as found at the end of Chapter 3, is also shown in (\ref{you})
@@ -66,7 +76,7 @@
     % IMPORTANT: avm.sty must be in your project folder
     % Feel free to copy avm.sty from this project
     \begin{examples}
-        %%begin novalidate%%
+        %%begin novalidate
         \item\begin{avm}
             \[
                 ATTRIBUTE 1 & value 1\\
@@ -74,6 +84,15 @@
             \]
         \end{avm}\label{minimal-avm}
         %%end novalidate
+        
+        %%begin novalidate
+        \item\begin{avm}
+            \[
+                ATTRIBUTE1 & val1 \\
+                ATTR2 & val2
+            \]
+        \end{avm}
+        %%end novalidate 
         
         %%begin novalidate
         \item\begin{avm}
@@ -86,7 +105,8 @@
                 AGR & \[PER & 2nd\]
                 \]\\
             VAL & 
-                \avmbox{1}
+                % \avmbox{1}
+                \@1
                 \[
                 COMPS & itr\\
                 SPR & +
@@ -95,6 +115,7 @@
         \>
         \end{avm}\label{you}
         %%end novalidate
+        
     \end{examples}
 
 \end{description}
@@ -107,7 +128,80 @@
 This is an example of a question that you might answer completely in prose, without the need for diagrams or subparts. You don't actually need the "description" flags around this part, but I find it looks a little better this way. LaTeX will also say that this looks to be missing an item, but it will still compile. \textbf{bold}, \textit{italic}, \textsc{small-caps}
 \end{description}
 
-\end{document}
+%%begin novalidate
+\begin{center}
+\begin{forest}
+[{\begin{avm}
+	\[\it{phrase} \\ 
+	    HEAD & \@0 \\
+	    VAL &
+	        \[
+	            SPR & \<\> \\
+	            COMPS & \<\>
+	        \]
+    \] \end{avm} }
+    [{\begin{avm} \avml \hfil \\
+    	\@2 \[\it{word} \\ 
+    	    HEAD & 
+    	        \[
+    	            \textit{noun} \\
+    	            AGR & \@1 
+    	                \[
+    	                    PER & \textit{3rd} \\
+    	                    NUM & \textit{pl}
+    	                \]
+    	        \] \\
+    	    VAL &
+    	        \[
+    	            SPR & \<\> \\
+    	            COMPS & \<\>
+    	        \] \\
+        \] \avmr \end{avm} } 
+        [\textit{They}]
+    ]
+    [{\begin{avm}
+    	\[\it{phrase} \\ 
+    	    HEAD & \@0 \\
+    	    VAL &
+    	        \[
+    	            SPR & \< \@2 \> \\
+    	            COMPS & \<\>
+    	        \]
+        \] \end{avm} }
+        [\begin{avm}\avmbox{3}\end{avm}
+        [\textit{swim in the pool},roof]]
+    ]
+]
+\end{forest}
+\end{center}
+%%end novalidate
+
+%%begin novalidate
+\begin{center}
+\begin{forest}
+[\begin{avm}\@3\end{avm}
+    [{\begin{avm}
+    	\[\it{word} \\ 
+    	    HEAD &
+    	        \@0 \[
+    	            \textit{verb} \\
+    	            AGR & \@1 \\
+    	        \] \\
+    	    VAL &
+    	        \[
+    	            SPR & \< \@2 \> \\
+    	            COMPS & \< \@4 \>
+    	        \]
+        \] \end{avm} }
+        [\textit{swim}]
+    ]
+    [[\begin{avm}\@4\end{avm}
+        [\textit{in the pool},roof]]
+    ]
+]
+\end{forest}
+\end{center}
+%%end novalidate
 
 
 \end{document}
