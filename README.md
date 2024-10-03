@@ -1,6 +1,6 @@
 # LaTeX for LING566
 
-This project contains a zip file called `LING566 LaTeX Tutorial (2024).zip` for the overleaf project used in the LaTeX tutorial for LING566.
+This project contains a zip file of a LaTeX project called `LING566 LaTeX Tutorial (2024).zip` used in the LaTeX tutorial for LING566. You can upload this zip file directly to Overleaf as its own project. 
 
 It contains the files individually as well if you wish to look at them here:
 
